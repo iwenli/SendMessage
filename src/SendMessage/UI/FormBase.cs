@@ -2,15 +2,18 @@
 using SendMessage.Common;
 using SendMessage.Service;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SendMessage.Common.Extension;
 
 namespace SendMessage.UI
 {
@@ -161,7 +164,7 @@ namespace SendMessage.UI
         /// 显示信息提示
         /// </summary>
         /// <param name="msg">错误内容</param>
-        protected void IS(string msg)
+        protected void IM(string msg)
         {
             MessageBox.Show(msg, ConstParams.APP_NAME, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -175,5 +178,7 @@ namespace SendMessage.UI
         }
 
         #endregion
+
+       
     }
 }

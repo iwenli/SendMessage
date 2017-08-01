@@ -28,75 +28,132 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tcMain = new System.Windows.Forms.TabControl();
-            this.tpMaMaBang = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.txtLog = new System.Windows.Forms.RichTextBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.txtUid = new System.Windows.Forms.TextBox();
+            this.txtLog = new System.Windows.Forms.RichTextBox();
+            this.ts = new System.Windows.Forms.ToolStrip();
+            this.tsLogin = new System.Windows.Forms.ToolStripButton();
+            this.tsLogout = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsExit = new System.Windows.Forms.ToolStripButton();
+            this.panelQueryParam = new System.Windows.Forms.Panel();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.tcMain.SuspendLayout();
-            this.tpMaMaBang.SuspendLayout();
+            this.cbFrom = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ts.SuspendLayout();
+            this.panelQueryParam.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tcMain
+            // txtUid
             // 
-            this.tcMain.Controls.Add(this.tpMaMaBang);
-            this.tcMain.Controls.Add(this.tabPage2);
-            this.tcMain.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tcMain.Location = new System.Drawing.Point(0, 0);
-            this.tcMain.Name = "tcMain";
-            this.tcMain.SelectedIndex = 0;
-            this.tcMain.Size = new System.Drawing.Size(1075, 397);
-            this.tcMain.TabIndex = 0;
-            // 
-            // tpMaMaBang
-            // 
-            this.tpMaMaBang.Controls.Add(this.btnSearch);
-            this.tpMaMaBang.Controls.Add(this.txtUid);
-            this.tpMaMaBang.Location = new System.Drawing.Point(4, 26);
-            this.tpMaMaBang.Name = "tpMaMaBang";
-            this.tpMaMaBang.Padding = new System.Windows.Forms.Padding(3);
-            this.tpMaMaBang.Size = new System.Drawing.Size(1067, 367);
-            this.tpMaMaBang.TabIndex = 0;
-            this.tpMaMaBang.Text = "妈妈帮";
-            this.tpMaMaBang.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 26);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(192, 70);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.txtUid.Location = new System.Drawing.Point(272, 14);
+            this.txtUid.Name = "txtUid";
+            this.txtUid.Size = new System.Drawing.Size(151, 23);
+            this.txtUid.TabIndex = 0;
+            this.txtUid.Text = "13571686";
             // 
             // txtLog
             // 
             this.txtLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtLog.ForeColor = System.Drawing.Color.Gray;
-            this.txtLog.Location = new System.Drawing.Point(0, 397);
+            this.txtLog.Location = new System.Drawing.Point(0, 239);
             this.txtLog.Name = "txtLog";
             this.txtLog.ReadOnly = true;
-            this.txtLog.Size = new System.Drawing.Size(1075, 312);
+            this.txtLog.Size = new System.Drawing.Size(1075, 470);
             this.txtLog.TabIndex = 1;
             this.txtLog.Text = "";
             // 
-            // txtUid
+            // ts
             // 
-            this.txtUid.Location = new System.Drawing.Point(40, 43);
-            this.txtUid.Name = "txtUid";
-            this.txtUid.Size = new System.Drawing.Size(151, 23);
-            this.txtUid.TabIndex = 0;
+            this.ts.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.ts.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsLogin,
+            this.tsLogout,
+            this.toolStripSeparator1,
+            this.tsExit});
+            this.ts.Location = new System.Drawing.Point(0, 0);
+            this.ts.Name = "ts";
+            this.ts.Size = new System.Drawing.Size(1075, 25);
+            this.ts.TabIndex = 3;
+            this.ts.Text = "toolStrip1";
+            // 
+            // tsLogin
+            // 
+            this.tsLogin.Image = global::SendMessage.Properties.Resources.user_16;
+            this.tsLogin.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsLogin.Name = "tsLogin";
+            this.tsLogin.Size = new System.Drawing.Size(64, 22);
+            this.tsLogin.Text = "登录(&I)";
+            // 
+            // tsLogout
+            // 
+            this.tsLogout.Enabled = false;
+            this.tsLogout.Image = global::SendMessage.Properties.Resources.left_16;
+            this.tsLogout.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsLogout.Name = "tsLogout";
+            this.tsLogout.Size = new System.Drawing.Size(66, 22);
+            this.tsLogout.Text = "注销(&L)";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // tsExit
+            // 
+            this.tsExit.Image = global::SendMessage.Properties.Resources.block_16;
+            this.tsExit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsExit.Name = "tsExit";
+            this.tsExit.Size = new System.Drawing.Size(68, 22);
+            this.tsExit.Text = "退出(&X)";
+            // 
+            // panelQueryParam
+            // 
+            this.panelQueryParam.Controls.Add(this.btnSearch);
+            this.panelQueryParam.Controls.Add(this.txtUid);
+            this.panelQueryParam.Controls.Add(this.cbFrom);
+            this.panelQueryParam.Controls.Add(this.label1);
+            this.panelQueryParam.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelQueryParam.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.panelQueryParam.Location = new System.Drawing.Point(0, 25);
+            this.panelQueryParam.Name = "panelQueryParam";
+            this.panelQueryParam.Size = new System.Drawing.Size(1075, 214);
+            this.panelQueryParam.TabIndex = 4;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(219, 43);
+            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSearch.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnSearch.Location = new System.Drawing.Point(968, 6);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnSearch.TabIndex = 1;
+            this.btnSearch.Size = new System.Drawing.Size(95, 34);
+            this.btnSearch.TabIndex = 4;
             this.btnSearch.Text = "查询";
+            this.btnSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSearch.UseVisualStyleBackColor = true;
+            // 
+            // cbFrom
+            // 
+            this.cbFrom.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbFrom.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbFrom.FormattingEnabled = true;
+            this.cbFrom.Items.AddRange(new object[] {
+            "妈妈帮"});
+            this.cbFrom.Location = new System.Drawing.Point(50, 12);
+            this.cbFrom.Name = "cbFrom";
+            this.cbFrom.Size = new System.Drawing.Size(180, 25);
+            this.cbFrom.TabIndex = 0;
+            this.cbFrom.Text = "妈妈帮";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Location = new System.Drawing.Point(12, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(32, 17);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "平台";
             // 
             // MainForm
             // 
@@ -105,24 +162,37 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1075, 709);
             this.Controls.Add(this.txtLog);
-            this.Controls.Add(this.tcMain);
+            this.Controls.Add(this.panelQueryParam);
+            this.Controls.Add(this.ts);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MaximizeBox = true;
+            this.MinimizeBox = true;
             this.Name = "MainForm";
+            this.ShowIcon = true;
+            this.ShowInTaskbar = true;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
-            this.tcMain.ResumeLayout(false);
-            this.tpMaMaBang.ResumeLayout(false);
-            this.tpMaMaBang.PerformLayout();
+            this.ts.ResumeLayout(false);
+            this.ts.PerformLayout();
+            this.panelQueryParam.ResumeLayout(false);
+            this.panelQueryParam.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TabControl tcMain;
-        private System.Windows.Forms.TabPage tpMaMaBang;
-        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.RichTextBox txtLog;
-        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtUid;
+        private System.Windows.Forms.ToolStrip ts;
+        private System.Windows.Forms.ToolStripButton tsLogin;
+        private System.Windows.Forms.ToolStripButton tsLogout;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton tsExit;
+        private System.Windows.Forms.Panel panelQueryParam;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.ComboBox cbFrom;
+        private System.Windows.Forms.Label label1;
     }
 }

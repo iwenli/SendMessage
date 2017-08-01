@@ -8,13 +8,14 @@ namespace SendMessage.Service.Entities
 {
     public class LoginAsyncResult
     {
+        /// <summary>
+        /// 登陆结果确认
+        /// </summary>
         public bool success { get; set; }
-        public string msg { get; set; }
-
-        public int errcode { get; set; }
-        public long mchid { get; set; }
-        public long userid { get; set; }
-        public string token { get; set; }
+        /// <summary>
+        /// 登陆提示语
+        /// </summary>
+        public string message { get; set; }
 
         /// <summary>
         /// 获得登录是否成功

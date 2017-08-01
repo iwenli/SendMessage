@@ -11,6 +11,10 @@ namespace SendMessage.Service.Entities
     /// </summary>
     class LoginInfo
     {
+        /// <summary>
+        /// 当前用户的ID
+        /// </summary>
+        public long UserId { get; set; }
 
         /// <summary>
         /// 获得或设置当前的显示名

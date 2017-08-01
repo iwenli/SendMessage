@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace SendMessage.Service
@@ -20,7 +21,6 @@ namespace SendMessage.Service
         public Session()
         {
             NetClient = new NetClient();
-            ApiList.IsTest = true;
         }
 
         /// <summary>
@@ -38,15 +38,6 @@ namespace SendMessage.Service
             private set { _loginInfo = value; }
         }
 
-        LoginAsyncResult _token;
-        /// <summary>
-        /// APP接口调用Token
-        /// </summary>
-        public LoginAsyncResult Token
-        {
-            get { return _token; }
-            private set { _token = value; }
-        }
 
         /// <summary>
         /// 获得当前是否已经登录
@@ -95,7 +86,7 @@ namespace SendMessage.Service
         /// </summary>
         /// <param name="verifyPoints"></param>
         /// <returns></returns>
-        public async Task<Exception> LoginAsync(string username, string password)
+        public async Task<Exception> LoginAsync(string username, string password, string verifycode)
         {
             IsLogined = false;
             LoginInfo = new LoginInfo()
@@ -103,57 +94,41 @@ namespace SendMessage.Service
                 UserName = username,
                 Password = password
             };
-            var webLoginData = new
+            var loginData = new
             {
-                userName = LoginInfo.UserName,
-                passWord = LoginInfo.Password
+                user_email = username,
+                password = password,
+                verify_code = verifycode,
+                remember = 0
             };
-            var apploginData = new
-            {
-                username = LoginInfo.UserName,
-                password = LoginInfo.Password.MD5().ToLower()
-            };
-            //网页登录
-            var webResult = NetClient.Create<string>(HttpMethod.Post, ApiList.MchWebLogin, data: webLoginData);
-            webResult.Send();
 
-            //app登陆
-            var loginCheck = NetClient.Create<LoginAsyncResult>(HttpMethod.Post, ApiList.Login, data: apploginData);
-            await loginCheck.SendAsync();
-            if (!loginCheck.IsValid())
+            //登录
+            var ctx = NetClient.Create<LoginAsyncResult>(HttpMethod.Post, ApiList.Login, ApiList.Host, loginData);
+            await ctx.SendAsync();
+
+            if (!ctx.IsValid())
             {
-                return loginCheck.Exception ?? new Exception("未能提交请求");
+                return ctx.Exception ?? new Exception("未能提交请求");
             }
-            _token = loginCheck.Result;
-            if (!_token.IsSuceess)
+            if (!ctx.Result.IsSuceess)
             {
-                return new Exception(_token.msg);
+                return new Exception(ctx.Result.message);
             }
 
-            ////登录好了。等等。。我们好像想拿到显示的中文名？
-            ////所以多加一个请求吧。
-            //var realNameCtx = NetClient.Create<WebResponseResult<MchInfo>>(
-            //                                         HttpMethod.Get,
-            //                                        ApiList.GetMchStateInfo,
-            //                                        "https://0.u.7518.cn/",
-            //                                        _token
-            //    );
-            //await realNameCtx.SendAsync();
-            //if (realNameCtx.IsValid())
-            //{
-            //    //匹配出名字信息
-            //    if (realNameCtx.Result.success && realNameCtx.Result.Data.Length > 0)
-            //    {
-            //        _loginInfo.MchInfo = realNameCtx.Result.Data[0];
-            //        LoginInfo.DisplayName = _loginInfo.MchInfo.ComName + "-" + _loginInfo.MchInfo.NickName;
-            //    }
-            //}
+            //登录好了。等等。。我们好像想拿到显示的中文名？
+            //所以多加一个请求吧。
+            var realNameCtx = NetClient.Create<string>(HttpMethod.Get, ApiList.Host, ApiList.Host);
+            await realNameCtx.SendAsync();
+            if (realNameCtx.IsValid())
+            {
+                _loginInfo.UserId = Convert.ToInt64(new Regex("(?<= var user_id = ).+?(?=;)").Match(realNameCtx.Result).Value);
+                LoginInfo.DisplayName = new Regex("(?<=class=\"login-name\">).+?(?=<br />欢迎回到妈妈帮</p>)").Match(realNameCtx.Result).Value;
+            }
             //这里失败了我们就随便起个名字，嗯。
             if (LoginInfo.DisplayName.IsNullOrEmpty())
                 LoginInfo.DisplayName = "路人甲";
 
             IsLogined = true;
-            ApiList.Token = _token;
             return null;
         }
     }
