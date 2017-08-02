@@ -58,6 +58,7 @@
             this.txtPassword.PasswordChar = '❤';
             this.txtPassword.Size = new System.Drawing.Size(182, 23);
             this.txtPassword.TabIndex = 1;
+            this.txtPassword.Text = "1qaz2wsx";
             this.toolTip1.SetToolTip(this.txtPassword, "密码");
             // 
             // txtUserName
@@ -66,6 +67,7 @@
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(182, 23);
             this.txtUserName.TabIndex = 0;
+            this.txtUserName.Text = "18310807769";
             this.toolTip1.SetToolTip(this.txtUserName, "注册的邮箱和手机号");
             // 
             // label2

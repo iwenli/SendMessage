@@ -40,17 +40,21 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.cbFrom = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtMsg = new System.Windows.Forms.TextBox();
+            this.btnSend = new System.Windows.Forms.Button();
             this.ts.SuspendLayout();
             this.panelQueryParam.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtUid
             // 
-            this.txtUid.Location = new System.Drawing.Point(272, 14);
+            this.txtUid.Location = new System.Drawing.Point(106, 58);
             this.txtUid.Name = "txtUid";
-            this.txtUid.Size = new System.Drawing.Size(151, 23);
+            this.txtUid.Size = new System.Drawing.Size(180, 23);
             this.txtUid.TabIndex = 0;
-            this.txtUid.Text = "13571686";
+            this.txtUid.Text = "5627228";
             // 
             // txtLog
             // 
@@ -109,9 +113,13 @@
             // 
             // panelQueryParam
             // 
+            this.panelQueryParam.Controls.Add(this.btnSend);
             this.panelQueryParam.Controls.Add(this.btnSearch);
+            this.panelQueryParam.Controls.Add(this.txtMsg);
             this.panelQueryParam.Controls.Add(this.txtUid);
+            this.panelQueryParam.Controls.Add(this.label3);
             this.panelQueryParam.Controls.Add(this.cbFrom);
+            this.panelQueryParam.Controls.Add(this.label2);
             this.panelQueryParam.Controls.Add(this.label1);
             this.panelQueryParam.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelQueryParam.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -139,7 +147,7 @@
             this.cbFrom.FormattingEnabled = true;
             this.cbFrom.Items.AddRange(new object[] {
             "妈妈帮"});
-            this.cbFrom.Location = new System.Drawing.Point(50, 12);
+            this.cbFrom.Location = new System.Drawing.Point(106, 13);
             this.cbFrom.Name = "cbFrom";
             this.cbFrom.Size = new System.Drawing.Size(180, 25);
             this.cbFrom.TabIndex = 0;
@@ -147,13 +155,54 @@
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.Location = new System.Drawing.Point(12, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(32, 17);
+            this.label1.Size = new System.Drawing.Size(65, 22);
             this.label1.TabIndex = 0;
-            this.label1.Text = "平台";
+            this.label1.Text = "平台：";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label2.Location = new System.Drawing.Point(12, 58);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 22);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "用户：";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label3.Location = new System.Drawing.Point(12, 96);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 41);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "发送   \r\n的内容：";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtMsg
+            // 
+            this.txtMsg.Location = new System.Drawing.Point(106, 96);
+            this.txtMsg.Multiline = true;
+            this.txtMsg.Name = "txtMsg";
+            this.txtMsg.Size = new System.Drawing.Size(180, 80);
+            this.txtMsg.TabIndex = 0;
+            // 
+            // btnSend
+            // 
+            this.btnSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSend.Enabled = false;
+            this.btnSend.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnSend.Location = new System.Drawing.Point(338, 142);
+            this.btnSend.Name = "btnSend";
+            this.btnSend.Size = new System.Drawing.Size(95, 34);
+            this.btnSend.TabIndex = 4;
+            this.btnSend.Text = "发送";
+            this.btnSend.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSend.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -194,5 +243,9 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ComboBox cbFrom;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtMsg;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnSend;
     }
 }

@@ -16,6 +16,7 @@ namespace SendMessage.Service
             Session = new Session();
             VerifyCodeService = new VerifyCodeService(this);
             UserService = new UserService(this);
+            ActionService = new ActionService(this);
         }
 
         /// <summary>
@@ -30,6 +31,10 @@ namespace SendMessage.Service
         /// 获得用户信息的服务
         /// </summary>
         public UserService UserService { get; private set; }
+        /// <summary>
+        /// 用户关注、私信等操作相关服务
+        /// </summary>
+        public ActionService ActionService { get; private set; }
     }
 }
 

@@ -23,14 +23,9 @@ namespace SendMessage.Service.Entities
         public T[] Data { get; private set; }
 
         /// <summary>
-        /// 响应的错误信息
+        /// 响应的信息,发送私信成功返回发送的信息条数
         /// </summary>
-        public string msg { get; private set; }
-
-        /// <summary>
-        /// api类型
-        /// </summary>
-        public string type { get; private set; }
+        public string message { get; private set; }
 
         /// <summary>
         /// 获得响应的错误信息
@@ -38,7 +33,7 @@ namespace SendMessage.Service.Entities
         /// <returns></returns>
         public string GetErrorMessage()
         {
-            return msg == null || msg.Length == 0 ? "" : msg.JoinAsString("; ");
+            return message == null || message.Length == 0 ? "" : message.JoinAsString("; ");
         }
     }
 
@@ -51,23 +46,22 @@ namespace SendMessage.Service.Entities
         /// 状态
         /// </summary>
         public bool success { get; private set; }
-        /// <summary>
-        /// 响应的错误信息
-        /// </summary>
-        public string msg { get; private set; }
 
         /// <summary>
-        /// api类型
+        /// 响应的信息,发送私信成功返回发送的信息条数
         /// </summary>
-        public string type { get; private set; }
-
+        public string message { get; private set; }
+        /// <summary>
+        /// 大于1表示验证码错误次数（标志着请求需要获取验证码）
+        /// </summary>
+        public int verify_code_error { get; private set; }
         /// <summary>
         /// 获得响应的错误信息
         /// </summary>
         /// <returns></returns>
         public string GetErrorMessage()
         {
-            return msg == null || msg.Length == 0 ? "" : msg.JoinAsString("; ");
+            return message == null || message.Length == 0 ? "" : message.JoinAsString("; ");
         }
     }
 }

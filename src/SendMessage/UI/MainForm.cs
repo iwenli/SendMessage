@@ -55,6 +55,7 @@ namespace SendMessage.UI
                 try
                 {
                     var info = await _context.UserService.GetUserInfo(txtUid.Text.Trim());
+                    AppendLog(txtLog, info.ToString());
                     //var ctx = _context.Session.NetClient.Create<string>(HttpMethod.Get, ApiList.UserHomePage.FormatWith(txtUid.Text.Trim()), "https://www.mmbang.com/bang/1");
                     //await ctx.SendAsync();
                     //if (ctx.IsValid())
@@ -63,7 +64,23 @@ namespace SendMessage.UI
                     //    txtLog.Text =  ctx.Result;
                     //}
                 }
-                catch (Exception ex )
+                catch (Exception ex)
+                {
+                    AppendLog(txtLog, ex.Message);
+                }
+            };
+
+            txtMsg.TextChanged += (s, e) => this.btnSend.Enabled = txtMsg.Text.Trim().Length > 4;
+
+            btnSend.Click += async (s, e) =>
+            {
+                try
+                {
+                    var info = await _context.UserService.GetUserInfo(txtUid.Text.Trim());
+                    var result = await _context.ActionService.SendMessage(info, txtMsg.Text);
+                    AppendLog(txtLog, result.success ? "发送成功(" + result.message + ")" : "发送失败：" + result.message);
+                }
+                catch (Exception ex)
                 {
                     AppendLog(txtLog, ex.Message);
                 }

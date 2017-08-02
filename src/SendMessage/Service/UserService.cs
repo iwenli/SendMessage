@@ -52,13 +52,14 @@ namespace SendMessage.Service
             }
 
             UserInfo userInfo = new UserInfo() { UserId = Convert.ToInt64(uid) };
+            userInfo.StartClickId = new Regex("(?<=MMBangStat.statClickAction\\(\")\\d+(?=\")").Match(ctx.Result).Value.Trim();
             userInfo.NickName = new Regex("(?<=<div class='big_title text_pink' id='home_title' style='margin-left:12px;'>)[\\s\\S]+?(?=\n<a)")
                 .Match(ctx.Result).Value.Trim();
             userInfo.HeadPic = new Regex("(?<=<img src=').+?(?=' style='width:100px; height:100px;' id='user_home_avatar)")
                .Match(ctx.Result).Value.Trim();
             userInfo.Location = new Regex("(?<=来自:)[\\s\\S]+?(?=<br />)").Match(ctx.Result).Value.Trim();
             userInfo.RegDate = Convert.ToDateTime( new Regex("(?<=注册:)[\\s\\S]+?(?=<br />)").Match(ctx.Result).Value.Trim());
-            userInfo.BeansNumber = Convert.ToInt32(new Regex("(?<=幸福豆子<span class='score_number' >).+?(?=</span>)")
+            userInfo.BeansNumber = Convert.ToDouble(new Regex("(?<=幸福豆子<span class='score_number' >).+?(?=</span>)")
                 .Match(ctx.Result).Value.Trim());
             userInfo.Level = Convert.ToInt32(new Regex("(?<=用户等级:<span class='score_number' >Lv.).+?(?=</span>)")
                 .Match(ctx.Result).Value.Trim());

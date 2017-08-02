@@ -38,7 +38,7 @@ namespace SendMessage.Service.Entities
         /// <summary>
         /// 幸福豆数量
         /// </summary>
-        public int? BeansNumber { set; get; }
+        public double? BeansNumber { set; get; }
         /// <summary>
         /// 宝宝
         /// </summary>
@@ -47,10 +47,28 @@ namespace SendMessage.Service.Entities
         /// 动态
         /// </summary>
         public List<ParticipatorInfo> Participators { set; get; }
+        /// <summary>
+        /// 初始点击ID  私信用  关注+1  取关+2
+        /// </summary>
+        public string StartClickId { set; get; }
 
         public UserInfo()
         {
             Babys = new List<BabyInfo>();
+        }
+
+        public override string ToString()
+        {
+            //A辉辉妈妈 发私信 关注
+            //来自: 浙江 嘉兴
+            //注册: 2016 - 01 - 13 18:18
+            //幸福豆子0颗 用户等级:Lv.2
+            StringBuilder userSb = new StringBuilder();
+            userSb.AppendFormat("用户：{0}({1}){2}", NickName, UserId, Environment.NewLine);
+            userSb.AppendFormat("来自：{0}{1}", Location, Environment.NewLine);
+            userSb.AppendFormat("注册时间：{0}{1}", RegDate, Environment.NewLine);
+            userSb.AppendFormat("幸福豆子{0}颗 用户等级:Lv.{1}{2}", BeansNumber ?? 0, Level ?? 0, Environment.NewLine);
+            return userSb.ToString();
         }
     }
 

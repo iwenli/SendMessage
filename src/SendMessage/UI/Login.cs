@@ -27,7 +27,7 @@ namespace SendMessage.UI
         {
             if (_context.Session.NetClient.CookieContainer.Count == 0)
             {
-                var cookie = @"referer=https%3A%2F%2Fwww.mmbang.com%2F; UM_distinctid=15d9e8e84b95d-08aa4e3dce3e3f-8383667-1fa400-15d9e8e84bafb; sid=3270616094; skey=65940503; last_vt=1501603723; uid=0; Hm_lvt_680ac5fedca30f7b2a9190575593f2eb=1501600631; Hm_lpvt_680ac5fedca30f7b2a9190575593f2eb=1501604704; CNZZDATA30062626=cnzz_eid%3D386834952-1501602482-https%253A%252F%252Fwww.mmbang.com%252F%26ntime%3D1501602482; PHPSESSID=656guj4polknpigniuu5603vj7";
+                var cookie = @"referer=https%3A%2F%2Fwww.mmbang.com%2F; UM_distinctid=15d9e8e84b95d-08aa4e3dce3e3f-8383667-1fa400-15d9e8e84bafb; sid=3270616094; skey=65940503; last_vt=1501603723; Hm_lvt_680ac5fedca30f7b2a9190575593f2eb=1501600631; Hm_lpvt_680ac5fedca30f7b2a9190575593f2eb=1501604704; CNZZDATA30062626=cnzz_eid%3D386834952-1501602482-https%253A%252F%252Fwww.mmbang.com%252F%26ntime%3D1501602482; PHPSESSID=656guj4polknpigniuu5603vj7";
                 _context.Session.NetClient.ImportCookies(cookie, new Uri(ApiList.Host));
             }
             //var ctx = _context.Session.NetClient.Create<string>(HttpMethod.Get, ApiList.Host, allowAutoRedirect: true);
