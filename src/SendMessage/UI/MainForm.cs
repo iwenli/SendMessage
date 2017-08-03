@@ -77,7 +77,14 @@ namespace SendMessage.UI
                 try
                 {
                     var info = await _context.UserService.GetUserInfo(txtUid.Text.Trim());
+
                     var result = await _context.ActionService.SendMessage(info, txtMsg.Text);
+                    if (!result.success && result.verify_code_error > 0) {  //需要验证码
+                        var vcdlg = new RequireVcDlg(_context);
+                        if (vcdlg.ShowDialog(this) != DialogResult.OK)
+                            return;
+                        result = await _context.ActionService.SendMessage(info, txtMsg.Text,vcdlg.VerifyCode);
+                    }
                     AppendLog(txtLog, result.success ? "发送成功(" + result.message + ")" : "发送失败：" + result.message);
                 }
                 catch (Exception ex)

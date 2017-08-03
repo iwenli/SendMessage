@@ -85,6 +85,7 @@
     <Compile Include="Common\ConstParams.cs" />
     <Compile Include="Common\Extension\CookieContainerExtension.cs" />
     <Compile Include="Common\License.cs" />
+    <Compile Include="Common\Parameters.cs" />
     <Compile Include="Common\Update.cs" />
     <Compile Include="app.cs" />
     <Compile Include="Network\NetClient.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Service\ActionService.cs" />
     <Compile Include="Service\Entities\LoginAsyncResult.cs" />
     <Compile Include="Service\Entities\LoginInfo.cs" />
+    <Compile Include="Service\Entities\PostsInfo.cs" />
     <Compile Include="Service\Entities\UserInfo.cs" />
     <Compile Include="Service\Entities\WebResponseResult.cs" />
     <Compile Include="Service\ServiceBase.cs" />
@@ -117,6 +119,12 @@
     <Compile Include="UI\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\RequireVcDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\RequireVcDlg.Designer.cs">
+      <DependentUpon>RequireVcDlg.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -132,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\RequireVcDlg.resx">
+      <DependentUpon>RequireVcDlg.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

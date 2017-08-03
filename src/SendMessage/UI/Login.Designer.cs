@@ -34,17 +34,12 @@
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtVerifyCode = new System.Windows.Forms.TextBox();
-            this.pbVc = new System.Windows.Forms.PictureBox();
-            this.btnRefresh = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.pbVc)).BeginInit();
             this.SuspendLayout();
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(179, 196);
+            this.btnOK.Location = new System.Drawing.Point(99, 97);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(102, 33);
             this.btnOK.TabIndex = 3;
@@ -88,61 +83,20 @@
             this.label1.Text = "密码：";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label3
-            // 
-            this.label3.Location = new System.Drawing.Point(12, 86);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(90, 20);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "验证码：";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtVerifyCode
-            // 
-            this.txtVerifyCode.Location = new System.Drawing.Point(99, 85);
-            this.txtVerifyCode.Name = "txtVerifyCode";
-            this.txtVerifyCode.Size = new System.Drawing.Size(182, 23);
-            this.txtVerifyCode.TabIndex = 2;
-            this.toolTip1.SetToolTip(this.txtVerifyCode, "验证码");
-            // 
-            // pbVc
-            // 
-            this.pbVc.Location = new System.Drawing.Point(99, 115);
-            this.pbVc.Name = "pbVc";
-            this.pbVc.Size = new System.Drawing.Size(182, 75);
-            this.pbVc.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbVc.TabIndex = 8;
-            this.pbVc.TabStop = false;
-            this.toolTip1.SetToolTip(this.pbVc, "点击验证码或刷新按钮刷新");
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Location = new System.Drawing.Point(99, 196);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(68, 33);
-            this.btnRefresh.TabIndex = 9;
-            this.btnRefresh.Text = "刷新(&R)";
-            this.btnRefresh.UseVisualStyleBackColor = true;
-            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(318, 242);
-            this.Controls.Add(this.btnRefresh);
-            this.Controls.Add(this.pbVc);
+            this.ClientSize = new System.Drawing.Size(318, 151);
             this.Controls.Add(this.btnOK);
-            this.Controls.Add(this.txtVerifyCode);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUserName);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "";
-            ((System.ComponentModel.ISupportInitialize)(this.pbVc)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -155,10 +109,6 @@
         private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtVerifyCode;
-        private System.Windows.Forms.PictureBox pbVc;
-        private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.ToolTip toolTip1;
     }
 }

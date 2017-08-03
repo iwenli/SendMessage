@@ -58,10 +58,11 @@ namespace SendMessage.Service
         /// <summary>
         /// 发送私信
         /// </summary>
-        /// <param name="userInfo"></param>
-        /// <param name="msg"></param>
+        /// <param name="userInfo">用户信息</param>
+        /// <param name="msg">私信内容</param>
+        /// <param name="vc">验证码</param>
         /// <returns></returns>
-        public async Task<WebResponseResult> SendMessage(UserInfo userInfo, string msg)
+        public async Task<WebResponseResult> SendMessage(UserInfo userInfo, string msg, string vc = "")
         {
             try
             {
@@ -76,20 +77,21 @@ namespace SendMessage.Service
             {
                 throw ex;
             }
-            var requestData = new
-            {
-                user_id = userInfo.UserId.ToString(),
-                user_name = Uri.EscapeDataString(userInfo.NickName),
-                content = msg
-            };
+            var requestData = new Parameters();
+            requestData.Add("user_id", userInfo.UserId);
+            requestData.Add("user_name", userInfo.NickName);
+            requestData.Add("content", msg);
+            if (!vc.IsNullOrEmpty()) {
+                requestData.Add("verify_code", vc);
+            }
             //如果有验证码 verify_code:yppb5p
 
 
             var ctx = NetClient.Create<WebResponseResult>(HttpMethod.Post, ApiList.SendMessage,
                                ApiList.UserHomePage.FormatWith(userInfo.UserId.ToString()),
-                               requestData,contentType:ContentType.FormUrlEncoded); 
+                               requestData.BuildQueryString(true), contentType: ContentType.FormUrlEncoded);
             ctx.Request.Headers.Set("X-Requested-With", "XMLHttpRequest");
-           await ctx.SendAsync();
+            await ctx.SendAsync();
             if (!ctx.IsValid())
             {
                 throw ctx.Exception ?? new Exception("未能提交请求SendMessage");
@@ -97,5 +99,71 @@ namespace SendMessage.Service
             return ctx.Result;
         }
 
+        /// <summary>
+        /// 关注|取关
+        /// </summary>
+        /// <param name="userInfo">用户</param>
+        /// <param name="isRemove">1表示取关 0表示关注</param>
+        /// <returns></returns>
+        public async Task<bool> Follow(UserInfo userInfo, int isRemove = 0)
+        {
+            await ClickStart(userInfo.StartClickId + 1 + isRemove);
+            var ctx = NetClient.Create<WebResponseResult>(HttpMethod.Get, ApiList.Follow.FormatWith(userInfo.UserId),
+                ApiList.UserHomePage.FormatWith(userInfo.UserId.ToString()));
+
+            await ctx.SendAsync();
+            if (!ctx.IsValid())
+            {
+                throw ctx.Exception ?? new Exception("未能提交请求Follow");
+            }
+            return ctx.Result.success;
+        }
+
+        /// <summary>
+        ///  加入帮派
+        /// </summary>
+        /// <param name="bangId">帮派id</param>
+        /// <returns></returns>
+        public async Task<bool> JoinBang(long bangId)
+        {
+            var ctx = NetClient.Create<WebResponseResult>(HttpMethod.Get, ApiList.JoinBang.FormatWith(bangId),
+                ApiList.BangHomePage.FormatWith(bangId));
+
+            await ctx.SendAsync();
+            if (!ctx.IsValid())
+            {
+                throw ctx.Exception ?? new Exception("未能提交请求JoinBang");
+            }
+            return ctx.Result.success;
+        }
+
+        /// <summary>
+        ///  发帖
+        /// </summary>
+        /// <param name="bangId">帮派id</param>
+        /// <param name="title"></param>
+        /// <param name="content"></param>
+        /// <param name="vc"></param>
+        /// <returns></returns>
+        public async Task<PostsInfo> SendPosts(long bangId,string title,string content,string vc="")
+        {
+            var ctx = NetClient.Create<PostsInfo>(HttpMethod.Get, ApiList.SendPosts.FormatWith(bangId),
+                ApiList.SendPosts.FormatWith(bangId));
+            /*
+                title:第一次发帖，不知道成功了会是什么样的
+                content:第一次发帖，不知道成功了会是什么样的
+                cat:0
+                topic_id:0
+                tag:
+                verify_code:8bycc
+                _T_:8982432,143722964,1501774845
+             */
+            await ctx.SendAsync();
+            if (!ctx.IsValid())
+            {
+                throw ctx.Exception ?? new Exception("未能提交请求JoinBang");
+            }
+            return ctx.Result;
+        }
     }
 }
